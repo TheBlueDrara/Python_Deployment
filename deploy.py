@@ -5,6 +5,8 @@ import subprocess
 dir_names = ["static", "template", "lib"]
 base_path = "./Project_folder/src/my_app/"
 mark_down_files = ["README.md", "CONTRIBUTORS.md", "TASK.md", ".gitignore"]
+tool_list = ["nginx", "python3", "python3-pip", "nginx-extras", "curl"]
+
 
 def main():
     create_filesystem()
@@ -35,21 +37,24 @@ def create_filesystem():
 # Checks if tool installed
 def is_installed(tool):
     try:
-        subprocess.run([tool, "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run([tool, "-version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True
     except (FileNotFoundError, subprocess.CalledProcessError):
         return False
 
 #Intalls tool if not installed
 def install_tools():
-    tool_list = ["nginx", "nginx-extras", "poetry"]
-    subprocess.run(['sudo', 'apt-get', 'update', 'y'])
+    subprocess.run(['sudo', 'apt-get', 'update'])
     for tool_name in tool_list:
         if is_installed(tool_name):
             print(f"{tool_name} is already insalled..")
         else:
             print(f"{tool_name} is not installed. installing...")
-            subprocess.run("sudo", "apt-get", "install", "-y", tool_name, check=True)
+            subprocess.run(["sudo", "apt-get", "install", "-y", tool_name], check=True)
+    if not is_installed("poetry"):       
+        subprocess.run(["curl", "-sSL", "https://install.python-poetry.org", "|", "python3", "-"], shell=True, check=True)
+    else:
+        return 0
 
 
 if __name__ == "__main__":
