@@ -4,11 +4,13 @@ import subprocess
 
 dir_names = ["static", "template", "lib"]
 base_path = "./Project_folder/src/my_app/"
+mark_down_files = ["README.md", "CONTRIBUTORS.md", "TASK.md", ".gitignore"]
 
 def main():
     create_filesystem()
     install_tools()
-#ADD Mark down files and .gitignore
+    
+
 #Creates the file system and placeholders
 def create_filesystem():
     for name in dir_names:
@@ -26,7 +28,11 @@ def create_filesystem():
     with open("./Project_folder/config/.Placeholder", "w") as f:
         pass
 
-#hecks if tool installed
+    for mark_down_name in mark_down_files:
+        with open(f"./Project_folder/{mark_down_name}", "w") as f:
+            pass
+
+# Checks if tool installed
 def is_installed(tool):
     try:
         subprocess.run([tool, "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
