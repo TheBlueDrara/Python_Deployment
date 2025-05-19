@@ -1,16 +1,16 @@
 import os
 import subprocess
 
-
+project_folder = "oops_i_did_it_again2"
 dir_names = ["static", "template", "lib"]
-base_path = "./Project_folder/src/my_app/"
+base_path = f"./{project_folder}/src/my_app/"
 mark_down_files = ["README.md", "CONTRIBUTORS.md", "TASK.md", ".gitignore"]
 tool_list = ["nginx", "python3", "python3-pip", "nginx-extras", "curl"]
 
 
 def main():
     create_filesystem()
-    install_tools()
+#    install_tools()
     
 
 #Creates the file system and placeholders
@@ -22,16 +22,16 @@ def create_filesystem():
         with open(placeholder_path, "w") as f:
             pass
 
-    os.makedirs(("./Project_folder/automation"), exist_ok=True)
-    with open("./Project_folder/automation/.Placeholder", "w") as f:
+    os.makedirs((f"./{project_folder}/automation"), exist_ok=True)
+    with open(f"./{project_folder}/automation/.Placeholder", "w") as f:
         pass
 
-    os.makedirs(("./Project_folder/config"), exist_ok=True)
-    with open("./Project_folder/config/.Placeholder", "w") as f:
+    os.makedirs((f"./{project_folder}/config"), exist_ok=True)
+    with open(f"./{project_folder}/config/.Placeholder", "w") as f:
         pass
 
     for mark_down_name in mark_down_files:
-        with open(f"./Project_folder/{mark_down_name}", "w") as f:
+        with open(f"./{project_folder}/{mark_down_name}", "w") as f:
             pass
 
 # Checks if tool installed
