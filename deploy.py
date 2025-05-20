@@ -7,6 +7,8 @@ base_path = f"./{project_folder}/src/my_app/"
 mark_down_files = ["README.md", "CONTRIBUTORS.md", "TASK.md", ".gitignore"]
 tool_list = ["nginx", "python3", "python3-pip", "nginx-extras", "curl"]
 
+# ADD USER INPUT TO ASK FOR A PROJECt FOLDER NAME!
+
 
 def main():
     create_filesystem()
